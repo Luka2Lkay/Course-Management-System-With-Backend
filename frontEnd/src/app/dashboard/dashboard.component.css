@@ -1,0 +1,8 @@
+.courses-menu {
+  display: grid;
+  grid-template-columns: 300px 300px 300px;
+  grid-gap: 20px;
+  max-height: 300px;
+  max-width: 300px;
+  margin-left: 15em;
+}

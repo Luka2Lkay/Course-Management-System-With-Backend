@@ -1,0 +1,14 @@
+<mat-list role="list" *ngFor="let course of courses">
+  <div class="row">
+    <div class="info" (click)="onSelect(course._id)">
+      <mat-list-item  role="listitem" class="courseId"><span
+          style="color: #fff; font-weight: bolder;">{{course._id.toString().slice(5,10) | uppercase}}</span></mat-list-item>
+          <!-- should course.availability be selected to "No" then changes should apply -->
+      <mat-list-item [class.red] = "course.availability == 'No'" role="listitem">{{course.course | uppercase}}</mat-list-item>
+    </div>
+    <div class="button">
+      <button mat-icon-button (click)="removeCourse(course._id)"><mat-icon color="warn">delete</mat-icon></button>
+    </div>
+  </div>
+
+</mat-list>

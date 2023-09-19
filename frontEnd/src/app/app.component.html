@@ -1,0 +1,13 @@
+<mat-toolbar color="primary">
+
+  <span>Course Management System</span>
+  <span class="example-spacer"></span>
+  <button mat-raised-button (click)="openForm()" class="add-course">Add Course</button>
+</mat-toolbar>
+
+<nav>
+  <button mat-raised-button><a routerLink="/dashboard">Dashboard</a></button>
+  <button mat-raised-button><a routerLink="/courses">Courses</a></button>
+</nav>
+
+<router-outlet></router-outlet>

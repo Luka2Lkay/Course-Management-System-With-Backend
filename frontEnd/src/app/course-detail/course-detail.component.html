@@ -1,0 +1,30 @@
+<div *ngIf="selectedCourse">
+    <mat-card class="card">
+        <mat-card-header>
+
+            <mat-card-title>{{selectedCourse.course | uppercase}}</mat-card-title>
+        </mat-card-header>
+        <img style="margin-bottom: 0.5em" mat-card-image height="250px" src={{selectedCourse.imageUrl}} alt={{selectedCourse.course}}>
+        <mat-card-content>
+            <p><strong>Course Id: </strong> {{selectedCourse._id.slice(5, 10) | uppercase}}</p>
+            <p>{{selectedCourse.description}}</p>
+
+            <div class="specifics">
+                <p>Duration: {{selectedCourse.duration}}</p>
+                <p>Modules: {{selectedCourse.modules}}</p>
+                <p>Available: <span [class.white]="selectedCourse.availability === 'Yes'"
+                        [class.red]="selectedCourse.availability === 'No'">{{selectedCourse.availability}}</span>
+                </p>
+            </div>
+
+        </mat-card-content>
+        <mat-card-actions>
+            <div class="actions">
+                <button mat-raised-button color="primary" (click)="viewEditForm(selectedCourse)">Edit</button>
+                <button mat-raised-button color="accent" (click)="goBack()">Back</button>
+
+            </div>
+        </mat-card-actions>
+    </mat-card>
+
+</div>

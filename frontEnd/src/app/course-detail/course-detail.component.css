@@ -1,0 +1,30 @@
+.card {
+    max-width: 400px;
+    margin: 5em auto;
+}
+
+.red {
+    color: red
+}
+
+.white {
+    color: #fff;
+}
+
+.specifics {
+    display: flex;
+    justify-content: space-around;
+}
+
+.specifics p {
+    background-color: black;
+    padding: 7px;
+    color: #fff;
+    border-radius: 2em;
+}
+.actions {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}

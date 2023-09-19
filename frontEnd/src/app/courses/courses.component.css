@@ -1,0 +1,27 @@
+.row {
+    display: flex;
+    background-color: #EEE;
+    width: 40%;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.row:hover {
+    background-color: #e6e6e6;
+}
+
+.info {
+    display: flex;
+}
+
+.courseId 
+{   min-width: 8em;
+    max-width: 8em;
+    font-weight: bolder;
+    background-color: #4e6074;
+}
+
+.red {
+    text-decoration: line-through;
+}
+

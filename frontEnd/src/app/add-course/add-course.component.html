@@ -1,0 +1,52 @@
+<div mat-dialog-title>
+    <h1>Course Form</h1>
+</div>
+
+<form [formGroup]="cmsForm" (ngSubmit)="save()">
+    <div mat-dialog-content class="content">
+        <div class="row">
+            <mat-form-field id="course" appearance="outline">
+                <mat-label for="course">Course</mat-label>
+                <input matInput formControlName="course" required="true">
+            </mat-form-field>
+
+            <mat-form-field id="duration">
+                <mat-label for="duration">Duration</mat-label>
+                <mat-select formControlName="duration" required="true">
+                    <mat-option *ngFor="let completionTime of completionTimes"
+                        [value]="completionTime">{{completionTime}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <mat-form-field id="description" appearance="outline">
+            <mat-label for="description">Add description</mat-label>
+            <textarea matInput formControlName="description" required="true"></textarea>
+        </mat-form-field>
+
+        <div class="row">
+            <mat-form-field id="modules" appearance="outline">
+                <mat-label for="modules">Modules</mat-label>
+                <input matInput formControlName="modules" type="number" [min]="1" required="true">
+            </mat-form-field>
+
+            <mat-form-field id="availability">
+                <mat-label for="availability">Availability</mat-label>
+                <mat-select formControlName="availability" required="true">
+                    <mat-option *ngFor="let avail of availabity" [value]="avail">{{avail}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    
+        <input (change)="getSelectedFile($event)" #fileInput type="file"
+            required="true">
+        <div *ngIf="imageData">
+            <img [src]="imageData" [alt] = "cmsForm.value.course">
+        </div>
+
+    </div>
+    <div mat-dialog-actions>
+        <button mat-raised-button [mat-dialog-close]>CANCEL</button>
+        <button mat-raised-button color="primary" type="submit">{{data ? 'UPDATE' : 'SAVE'}}</button>
+    </div>
+</form>
