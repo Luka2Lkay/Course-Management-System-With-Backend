@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const courseController = require("../controllers/courseController");
 const {upload} = require("../helper_functions/helper_functions")
-const Course = require("../models/course");
 
 router.post("/create", upload.single("file"), courseController.createCourse);
 
