@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CoursesService } from '../services/courses.service';
 import { Router } from '@angular/router';
@@ -12,20 +12,19 @@ import { Router } from '@angular/router';
 export class AddCourseComponent implements OnInit {
   imageData?: string;
 
-  cmsForm: FormGroup = this._fb.group({
-    course: '',
-    modules: '',
-    duration: '',
-    description: '',
-    availability: '',
-    imageUrl: '',
+  cmsForm: FormGroup = new FormGroup ({
+    course: new FormControl(''),
+    modules: new FormControl(''),
+    duration: new FormControl(''),
+    description: new FormControl(''),
+    availability: new FormControl(''),
+    imageUrl: new FormControl(''),
   });
 
   completionTimes: string[] = ['3 Months', '6 Months', '12 Months'];
   availabity: string[] = ['Yes', 'No'];
 
   constructor(
-    private _fb: FormBuilder,
     private _dialogRef: MatDialogRef<AddCourseComponent>,
     private _coursesService: CoursesService,
     private router: Router,
