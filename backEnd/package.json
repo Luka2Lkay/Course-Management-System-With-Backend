@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "nodemon server.js",
-    "sever": "server.js"
+    "server": "server.js"
   },
   "name": "course-api",
   "version": "1.0.0",

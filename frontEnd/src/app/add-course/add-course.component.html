@@ -2,7 +2,7 @@
     <h1>Course Form</h1>
 </div>
 
-<form [formGroup]="cmsForm" (ngSubmit)="save()">
+<form [formGroup]="cmsForm" (ngSubmit)="save()" >
     <div mat-dialog-content class="content">
         <div class="row">
             <mat-form-field id="course" appearance="outline">
@@ -37,16 +37,12 @@
                 </mat-select>
             </mat-form-field>
         </div>
-    
-        <input (change)="getSelectedFile($event)" #fileInput type="file"
-            required="true">
-        <div *ngIf="imageData">
-            <img [src]="imageData" [alt] = "cmsForm.value.course">
-        </div>
+
+        <input (change)="getSelectedFile($event)" #fileInput type="file" required="true">
 
     </div>
     <div mat-dialog-actions>
         <button mat-raised-button [mat-dialog-close]>CANCEL</button>
-        <button mat-raised-button color="primary" type="submit">{{data ? 'UPDATE' : 'SAVE'}}</button>
+        <button mat-raised-button color="primary" [disabled]="!this.cmsForm.invalid" type="submit">{{data ? 'UPDATE' : 'SAVE'}}</button>
     </div>
 </form>

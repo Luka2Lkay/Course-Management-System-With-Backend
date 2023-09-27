@@ -10,15 +10,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-course.component.css'],
 })
 export class AddCourseComponent implements OnInit {
-  imageData?: string;
-
-  cmsForm: FormGroup = new FormGroup ({
+  cmsForm: FormGroup = new FormGroup({
     course: new FormControl(''),
     modules: new FormControl(''),
     duration: new FormControl(''),
     description: new FormControl(''),
     availability: new FormControl(''),
-    imageUrl: new FormControl(''),
   });
 
   completionTimes: string[] = ['3 Months', '6 Months', '12 Months'];

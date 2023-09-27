@@ -5,7 +5,7 @@ exports.createCourse = async (req, res) => {
     const { course, description, modules, duration, availability } = req.body;
 
     const imageUrl = "http://localhost:3300/images/" + req.file.filename;
-console.log(req.file)
+
     const courseInfo = new Course({
       course,
       description,

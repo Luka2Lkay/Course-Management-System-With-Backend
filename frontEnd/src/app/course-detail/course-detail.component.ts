@@ -36,6 +36,7 @@ export class CourseDetailComponent implements OnInit {
         );
 
         this.selectedCourse = course;
+        console.log(this.courses)
       },
       error: console.log,
     });

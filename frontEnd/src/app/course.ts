@@ -1,6 +1,5 @@
-// export interface Course  {
-//     id: number,
-//     course: string,
-//     duration: string,
-//     module: string
-// }
+export interface Course  {
+    course: string,
+    duration: string,
+    module: string
+}
