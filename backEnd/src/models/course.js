@@ -6,6 +6,7 @@ const courseSchema = new mongoose.Schema({
     modules: {type: String, required: true},
     duration: {type: String, required: true},
     availability: {type: String, required: true},
+    imageUrl: { type: String, required: true },
 });
 
 module.exports = mongoose.model('course', courseSchema);

@@ -1,5 +1,7 @@
 export interface Course  {
     course: string,
+    modules: String,
     duration: string,
-    module: string
+    description: String,
+    availability: String
 }
