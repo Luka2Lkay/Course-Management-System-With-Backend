@@ -3,5 +3,6 @@ export interface Course  {
     modules: String,
     duration: string,
     description: String,
-    availability: String
+    availability: String,
+    imageUrl: String
 }

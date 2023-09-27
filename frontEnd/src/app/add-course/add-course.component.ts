@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-course.component.css'],
 })
 export class AddCourseComponent implements OnInit {
-  // imageData?: string;
 
   cmsForm: FormGroup = new FormGroup ({
     course: new FormControl(''),
