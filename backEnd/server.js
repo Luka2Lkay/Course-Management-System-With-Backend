@@ -3,13 +3,14 @@ const express = require("express");
 const mongoose = require("mongoose");
 const courseRoutes = require("././src/routes/courseRoutes");
 const app = express();
+const {connectionStr} = require("./src/config/db_config")
 
 const port = 3300;
 app.use(express.json());
 app.use(cors());
 
 mongoose
-  .connect("mongodb://127.0.0.1/Course")
+  .connect(connectionStr.db)
   .then(() => {
     console.log("You are connected");
   })
