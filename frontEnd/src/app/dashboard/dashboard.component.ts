@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CoursesService } from '../services/courses.service';
-
+import { Course } from '../interfaces/course';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +12,7 @@ import { CoursesService } from '../services/courses.service';
 export class DashboardComponent implements OnInit {
   constructor(private CoursesService: CoursesService, private router: Router) {}
 
-  availableCourses?: any[];
+  availableCourses?: Course[];
 
   ngOnInit(): void {
     this.getAllCourses();
@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   getAllCourses() {
     this.CoursesService.getAllCourses().subscribe({
       next: (res) => {
-        const available = res.filter((courses: any) => {
+        const available = res.filter((courses: Course) => {
           return courses.availability === 'Yes';
         });
 

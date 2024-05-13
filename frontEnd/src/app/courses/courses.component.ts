@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CoursesService } from '../services/courses.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Course } from '../interfaces/course';
 
 @Component({
   selector: 'app-courses',
@@ -15,7 +16,7 @@ export class CoursesComponent implements OnInit {
     private router: Router
   ) {}
 
-  courses?: any;
+  courses?: Course[];
 
   ngOnInit(): void {
     this.getAllCourses();

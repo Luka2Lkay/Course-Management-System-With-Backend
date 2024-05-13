@@ -4,6 +4,7 @@ import { CoursesService } from '../services/courses.service';
 import { Location } from '@angular/common';
 import { AddCourseComponent } from '../add-course/add-course.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Course } from '../interfaces/course';
 
 @Component({
   selector: 'app-course-detail',
@@ -11,7 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./course-detail.component.css'],
 })
 export class CourseDetailComponent implements OnInit {
-  @Input() selectedCourse?: any;
+  @Input() selectedCourse?: Course;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -20,7 +21,7 @@ export class CourseDetailComponent implements OnInit {
     private dialogue: MatDialog
   ) {}
 
-  courses?: any;
+  courses?: Course[];
 
   ngOnInit(): void {
     this.getAllCourses();
@@ -31,12 +32,12 @@ export class CourseDetailComponent implements OnInit {
     const courseId = this.activatedRoute.snapshot.paramMap.get('id');
     this._coursesService.getAllCourses().subscribe({
       next: (res) => {
-        const course = res.find((el: any) =>
-          el._id.toString().slice(5,10).includes(courseId)
+        const course = res.find((el: Course) =>
+          el._id.toString().slice(5,10) === courseId
         );
 
         this.selectedCourse = course;
-        console.log(this.courses)
+    
       },
       error: console.log,
     });
@@ -50,7 +51,7 @@ export class CourseDetailComponent implements OnInit {
     });
   }
 
-  viewEditForm(data: any) {
+  viewEditForm(data: Course) {
     const dialogRef = this.dialogue.open(AddCourseComponent, { data });
 
     dialogRef.afterClosed().subscribe({
