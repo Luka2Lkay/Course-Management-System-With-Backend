@@ -8,7 +8,7 @@ import { Course } from '../interfaces/course';
 })
 
 export class CoursesService {
-  apiUrl = 'http://localhost:3300/course';
+  apiUrl = 'https://course-management-system-with-backend.vercel.app/';
 
   constructor(private _http: HttpClient) {}
 
