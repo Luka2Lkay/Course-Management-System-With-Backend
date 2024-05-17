@@ -23,12 +23,14 @@ exports.createCourse = async (req, res) => {
 };
 
 exports.getAllCourses = async (_req, res) => {
-  try {
-    const courses = await Course.find();
-    res.status(200).json(courses);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+  // try {
+  //   const courses = await Course.find();
+  //   res.status(200).json(courses);
+  // } catch (error) {
+  //   res.status(500).json({ error: error.message });
+  // }
+
+  res.status(200).json({message: "hello"})
 };
 
 exports.getCourseById = async (req, res) => {
