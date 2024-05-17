@@ -21,6 +21,10 @@ mongoose
 app.use("/course", courseRoutes);
 app.use("/images", express.static("images"));
 
+app.get("/" ,(req ,res) =>{
+  res.json({message:"Course Management System"})
+})
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
