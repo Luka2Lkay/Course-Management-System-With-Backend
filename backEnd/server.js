@@ -19,7 +19,7 @@ mongoose
   });
 
 app.get("/", (req, res) => {
-  res.send("The Course Management System server is running...")
+  res.status(200).json({"message": "The Course Management System server is running..."})
 })
 
 app.use("/course", courseRoutes);
