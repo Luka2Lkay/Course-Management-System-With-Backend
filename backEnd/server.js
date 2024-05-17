@@ -24,6 +24,7 @@ app.use("/images", express.static("images"));
 
 app.get("/" ,(req ,res) =>{
   // res.json({message: "Course Management System"})
+  res.set('Access-Control-Allow-Origin', 'https://course-management-system-with-backend.vercel.app/');
   app.use("/course", courseRoutes);
   app.use("/images", express.static("images"));
 })
