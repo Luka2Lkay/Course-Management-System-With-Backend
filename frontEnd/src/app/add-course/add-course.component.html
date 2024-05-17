@@ -3,7 +3,7 @@
 </div>
 
 <form [formGroup]="cmsForm" (ngSubmit)="save()" >
-    <div mat-dialog-content class="content">
+    <!-- <div mat-dialog-content class="content">
         <div class="row">
             <mat-form-field id="course" appearance="outline">
                 <mat-label for="course">Course</mat-label>
@@ -40,7 +40,7 @@
 
         <input (change)="getSelectedFile($event)" #fileInput type="file" required="true">
 
-    </div>
+    </div> -->
     <div mat-dialog-actions>
         <button mat-raised-button [mat-dialog-close]>CANCEL</button>
         <button mat-raised-button color="primary" [disabled]="!this.cmsForm.valid" type="submit">{{data ? 'UPDATE' : 'SAVE'}}</button>
