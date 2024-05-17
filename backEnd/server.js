@@ -23,7 +23,7 @@ app.use("/course", courseRoutes);
 app.use("/images", express.static("images"));
 
 app.get("/" ,(req ,res) =>{
-  res.json({message:"Course Management System"})
+  res.send("Course Management System")
 })
 
 app.listen(port, () => {
