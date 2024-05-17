@@ -18,6 +18,10 @@ mongoose
     console.log("Oops! You are not connected!", error);
   });
 
+app.get("/", (req, res) => {
+  res.send("Course Management System")
+})
+
 app.use("/course", courseRoutes);
 app.use("/images", express.static("images"));
 
