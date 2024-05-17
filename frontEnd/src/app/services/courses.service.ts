@@ -8,7 +8,7 @@ import { Course } from '../interfaces/course';
 })
 
 export class CoursesService {
-  apiUrl = 'https://course-management-system-with-backend-7u9c.vercel.app';
+  apiUrl = 'https://course-management-system-with-backend-7u9c.vercel.app/course';
 
   constructor(private _http: HttpClient) {}
 
@@ -17,7 +17,7 @@ export class CoursesService {
   }
 
   getAllCourses(): Observable<Course[]> {
-    return this._http.get<Course[]>(`${this.apiUrl}/course`);
+    return this._http.get<Course[]>(this.apiUrl);
   }
 
   deleteCourse(id: number): Observable<Course> {
