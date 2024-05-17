@@ -19,7 +19,7 @@ mongoose
   });
 
 app.get("/", (req, res) => {
-  res.send("TheCourse Management System server is running")
+  res.send("The Course Management System server is running...")
 })
 
 app.use("/course", courseRoutes);
