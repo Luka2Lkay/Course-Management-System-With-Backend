@@ -4,7 +4,7 @@ exports.createCourse = async (req, res) => {
   try {
     const { course, description, modules, duration, availability } = req.body;
 
-    const imageUrl = "https://course-management-system-with-backend-7u9c.vercel.app/course/images/" + req.file.filename;
+    const imageUrl = "https://course-management-system-with-backend-7u9c.vercel.app/" + req.file.filename;
 
     const courseInfo = new Course({
       course,
@@ -29,6 +29,7 @@ exports.getAllCourses = async (_req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+
 };
 
 exports.getCourseById = async (req, res) => {
