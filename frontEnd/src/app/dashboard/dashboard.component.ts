@@ -21,12 +21,11 @@ export class DashboardComponent implements OnInit {
   getAllCourses() {
     this.CoursesService.getAllCourses().subscribe({
       next: (res) => {
-        console.log(res)
-        // const available = res.filter((courses: Course) => {
-        //   return courses.availability === 'Yes';
-        // });
+        const available = res.filter((courses: Course) => {
+          return courses.availability === 'Yes';
+        });
 
-        // this.availableCourses = available;
+        this.availableCourses = available;
       },
       error: console.log,
     });
