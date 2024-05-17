@@ -8,6 +8,13 @@ const {connectionStr} = require("./src/config/db_config")
 const port = 3300;
 app.use(express.json());
 app.use(cors());
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-access-token');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  next();
+})
+
 
 mongoose
   .connect(connectionStr.db)
