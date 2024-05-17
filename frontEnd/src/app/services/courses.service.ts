@@ -21,14 +21,14 @@ export class CoursesService {
   }
 
   deleteCourse(id: number): Observable<Course> {
-    return this._http.delete<Course>(`${this.apiUrl}/course/${id}`);
+    return this._http.delete<Course>(`${this.apiUrl}/${id}`);
   }
 
   updateCourse(id: number, data: FormData): Observable<Course> {
-    return this._http.put<Course>(`${this.apiUrl}/course/${id}`, data);
+    return this._http.put<Course>(`${this.apiUrl}/${id}`, data);
   }
 
   getCourse(id: number): Observable<Course> {
-    return this._http.get<Course>(`${this.apiUrl}/course/'${id}`);
+    return this._http.get<Course>(`${this.apiUrl}/'${id}`);
   }
 }
