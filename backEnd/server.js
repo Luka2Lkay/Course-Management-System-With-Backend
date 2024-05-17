@@ -9,7 +9,6 @@ const port = 3300;
 app.use(express.json());
 app.use(cors());
 
-
 mongoose
   .connect(connectionStr.db)
   .then(() => {
@@ -21,13 +20,6 @@ mongoose
 
 app.use("/course", courseRoutes);
 app.use("/images", express.static("images"));
-
-app.get("/" ,(req ,res) =>{
-  // res.json({message: "Course Management System"})
-  res.set('Access-Control-Allow-Origin', 'https://course-management-system-with-backend.vercel.app/');
-  app.use("/course", courseRoutes);
-  app.use("/images", express.static("images"));
-})
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
