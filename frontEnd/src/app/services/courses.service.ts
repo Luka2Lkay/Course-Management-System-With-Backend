@@ -13,7 +13,7 @@ export class CoursesService {
   constructor(private _http: HttpClient) {}
 
   addCourses(data: FormData): Observable<Course> {
-    return this._http.post<Course>(`${this.apiUrl}/course/create`, data);
+    return this._http.post<Course>(`${this.apiUrl}/create`, data);
   }
 
   getAllCourses(): Observable<Course[]> {
