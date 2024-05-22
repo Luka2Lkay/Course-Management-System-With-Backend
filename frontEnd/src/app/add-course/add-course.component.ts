@@ -85,7 +85,7 @@ export class AddCourseComponent implements OnInit {
 
         this._coursesService.addCourses(formData).subscribe({
           next: () => {
-            console.log(formData);
+            console.log(formData.get('course'));
             this.reloadCurrentRoute();
             this._dialogRef.close(true);
           },
