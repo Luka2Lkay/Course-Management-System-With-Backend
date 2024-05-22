@@ -3,7 +3,7 @@ const router = express.Router();
 const courseController = require("../controllers/courseController");
 const {upload} = require("../helper_functions/helper_functions")
 
-router.post("/create", courseController.createCourse);
+router.post("/create", upload.single("file"), courseController.createCourse);
 
 router.get("/", courseController.getAllCourses);
 router.get("/:id", courseController.getCourseById);
