@@ -8,7 +8,7 @@ import { Course } from '../interfaces/course';
 })
 
 export class CoursesService {
-  apiUrl = 'https://course-management-system-with-backend-qvqd.vercel.app/';
+  apiUrl = 'https://course-management-system-with-backend-qvqd.vercel.app';
 
   constructor(private _http: HttpClient) {}
 
