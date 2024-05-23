@@ -12,8 +12,8 @@ export class CoursesService {
 
   constructor(private _http: HttpClient) {}
 
-  addCourses(data: any): Observable<Course> {
-    return this._http.post<Course>(`${this.apiUrl}/course/create`, data);
+  addCourses(data: any): Observable<any> {
+    return this._http.post<any>(`${this.apiUrl}/course/create`, data);
   }
 
   getAllCourses(): Observable<Course[]> {
