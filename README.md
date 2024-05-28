@@ -6,9 +6,4 @@
 
 **HOW TO RUN THE BACK END OF THE PROGRAM**
 - Execute *npm i express multer* in the terminal.
-- In install MongoDb locally or use MongoDB Atlas.
-- Create a database and connect it to Express.
 - Execute *npm run start* in the terminal.
-
-**Link
-- https://course-management-system-with-backend.vercel.app/dashboard
