@@ -17,6 +17,7 @@ const storage = new CloudinaryStorage({
     public_id: (req, file) => {
       const timestamp = Date.now();
       const name = file.originalname.split(".")[0]
+      const cleanName = name.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-_]/g,"")
       return `${name}-${timestamp}`;
     },
   },
