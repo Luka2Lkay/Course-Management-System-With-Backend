@@ -10,6 +10,8 @@ exports.createCourse = async (req, res) => {
 
     const imageUrl = req.file.path;
 
+    console.log("image url: ", imageUrl);
+
     const courseInfo = new Course({
       course,
       description,
@@ -20,8 +22,10 @@ exports.createCourse = async (req, res) => {
     });
 
     const savedCourse = await courseInfo.save();
+
     return res.status(201).json(savedCourse);
   } catch (error) {
+    console.error("nantsi error");
     return res.status(500).json({ error: error.message });
   }
 };
