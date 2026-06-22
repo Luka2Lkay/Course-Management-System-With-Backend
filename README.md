@@ -4,7 +4,7 @@ A full-stack application for managing course information with image uploads, bui
 
 ## Overview
 
-This system manages courses using **Angular** for a dynamic frontend, **Express.js** for backend logic, **MongoDB** for flexible data storage, and **Multer** for image uploads. Users can add, edit, update, and remove courses through an intuitive user-friendly interface. The backend handles data validation, interacts with the database, and processes image uploads. This architecture provides a scalable and maintainable solution for managing course information effectively.
+This system manages courses using **Angular** for a dynamic frontend, **Express.js** for backend logic, **MongoDB** for flexible data storage, **Cloudinary** for cloud image storage, and **Multer** for file handling. Users can add, edit, update, and remove courses through an intuitive user-friendly interface. The backend handles data validation, interacts with the database, and manages image uploads to the cloud. This architecture provides a scalable and maintainable solution for managing course information effectively.
 
 ## Tech Stack
 
@@ -19,7 +19,8 @@ This system manages courses using **Angular** for a dynamic frontend, **Express.
 - Node.js
 - Express.js
 - MongoDB with Mongoose
-- Multer (file uploads)
+- Cloudinary (cloud image storage)
+- Multer (file upload handling)
 - CORS enabled
 
 ## Features
@@ -80,13 +81,31 @@ Course-Management-System-With-Backend/
    npm install
    ```
 
-3. Configure your MongoDB connection in `src/config/db_config.js`
+3. Configure environment variables:
+   - Copy `.env.example` to `.env`
+   - Add your MongoDB connection string
+   - Add your Cloudinary credentials (see [CLOUDINARY_SETUP.md](backEnd/CLOUDINARY_SETUP.md))
 
 4. Start the development server:
    ```bash
    npm run start
    ```
    The backend server runs on **http://localhost:3300**
+
+### Cloudinary Setup (Important!)
+
+This project uses **Cloudinary** for cloud-based image storage. Follow these steps:
+
+1. Create a free account at [cloudinary.com](https://cloudinary.com/)
+2. Get your API credentials from the dashboard
+3. Add them to your `.env` file:
+   ```env
+   CLOUDINARY_CLOUD_NAME=your_cloud_name
+   CLOUDINARY_API_KEY=your_api_key
+   CLOUDINARY_API_SECRET=your_api_secret
+   ```
+
+For detailed setup instructions, see [CLOUDINARY_SETUP.md](backEnd/CLOUDINARY_SETUP.md)
 
 ### Frontend Setup
 
@@ -125,11 +144,19 @@ Static images are served from: `http://localhost:3300/images`
 
 ## Environment Configuration
 
-Ensure you have the following configured in your backend:
+Create a `.env` file in the `backEnd` directory with the following variables:
 
-- **MongoDB Connection String** - Set in `src/config/db_config.js`
-- **Port** - Default is 3300 (configurable in `server.js`)
-- **CORS** - Enabled for frontend communication
+```env
+# MongoDB Connection String
+CONNECTION_STRING=mongodb+srv://username:password@cluster.mongodb.net/course-management
+
+# Cloudinary Credentials (get from https://cloudinary.com/console/settings/api-keys)
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+```
+
+**Important:** Never commit `.env` to version control. Use `.env.example` as a template.
 
 ## Scripts
 
