@@ -1,13 +1,158 @@
-# Course Management Sytem
-This system manages courses using Angular for a dynamic frontend, Express.js for backend logic, MongoDB for flexible data storage, and Multer for image uploads. Users can add, edit, update, and remove courses through a user-friendly interface. The backend handles data validation, interacts with the database, and processes image uploads. This architecture provides a scalable and maintainable solution for managing course information effectively.
+# Course Management System
 
-## HOW TO RUN THE FRONT END OF THE PROGRAM
-- Go to the **frontEnd** directory.
-- Execute **npm install -g @angular/cli** in the terminal.
-- In the following prompts choose CSS and no to routing.
-- Execute ng serve -o in the terminal.
+A full-stack application for managing course information with image uploads, built with modern web technologies and best practices.
 
-## HOW TO RUN THE BACK END OF THE PROGRAM
-- Go to the **backEnd** directory.
-- Execute **npm install** in the terminal.
-- Execute **npm run start** in the terminal.
+## Overview
+
+This system manages courses using **Angular** for a dynamic frontend, **Express.js** for backend logic, **MongoDB** for flexible data storage, and **Multer** for image uploads. Users can add, edit, update, and remove courses through an intuitive user-friendly interface. The backend handles data validation, interacts with the database, and processes image uploads. This architecture provides a scalable and maintainable solution for managing course information effectively.
+
+## Tech Stack
+
+**Frontend:**
+- Angular 16
+- Angular Material Design
+- TypeScript
+- RxJS
+- Reactive Forms
+
+**Backend:**
+- Node.js
+- Express.js
+- MongoDB with Mongoose
+- Multer (file uploads)
+- CORS enabled
+
+## Features
+
+:white_check_mark: Add, view, edit, and delete courses  
+:white_check_mark: Upload and manage course images  
+:white_check_mark: Responsive Material Design UI  
+:white_check_mark: Persistent MongoDB data storage  
+:white_check_mark: RESTful API with proper error handling  
+:white_check_mark: Real-time form validation  
+
+## Project Structure
+
+```
+Course-Management-System-With-Backend/
+├── backEnd/                     # Express.js REST API
+│   ├── src/
+│   │   ├── config/             # Database configuration
+│   │   ├── controllers/        # Request handlers
+│   │   ├── models/             # MongoDB schemas
+│   │   ├── routes/             # API routes
+│   │   └── helper_functions/   # Utilities (Multer)
+│   ├── images/                 # Uploaded course images
+│   ├── package.json
+│   └── server.js               # Entry point
+│
+└── frontEnd/                    # Angular SPA
+    ├── src/
+    │   ├── app/
+    │   │   ├── dashboard/      # Main landing page
+    │   │   ├── courses/        # Course list
+    │   │   ├── course-detail/  # Course details
+    │   │   ├── add-course/     # Add/edit form
+    │   │   ├── services/       # HTTP client
+    │   │   ├── interfaces/     # TypeScript types
+    │   │   └── app-routing.module.ts
+    │   └── styles.css
+    └── package.json
+```
+
+## Getting Started
+
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn
+- MongoDB instance (local or cloud)
+- Angular CLI (installed globally)
+
+### Backend Setup
+
+1. Navigate to the backend directory:
+   ```bash
+   cd backEnd
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Configure your MongoDB connection in `src/config/db_config.js`
+
+4. Start the development server:
+   ```bash
+   npm run start
+   ```
+   The backend server runs on **http://localhost:3300**
+
+### Frontend Setup
+
+1. Navigate to the frontend directory:
+   ```bash
+   cd frontEnd
+   ```
+
+2. Install Angular CLI globally (if not already installed):
+   ```bash
+   npm install -g @angular/cli
+   ```
+
+3. Install project dependencies:
+   ```bash
+   npm install
+   ```
+
+4. Start the development server:
+   ```bash
+   ng serve -o
+   ```
+   The frontend application opens at **http://localhost:4200**
+
+## API Endpoints
+
+All API endpoints are prefixed with `/course`:
+
+- `GET /course` - Get all courses
+- `GET /course/:id` - Get course by ID
+- `POST /course` - Create new course
+- `PUT /course/:id` - Update course
+- `DELETE /course/:id` - Delete course
+
+Static images are served from: `http://localhost:3300/images`
+
+## Environment Configuration
+
+Ensure you have the following configured in your backend:
+
+- **MongoDB Connection String** - Set in `src/config/db_config.js`
+- **Port** - Default is 3300 (configurable in `server.js`)
+- **CORS** - Enabled for frontend communication
+
+## Scripts
+
+### Backend
+- `npm run start` - Start with nodemon (auto-reload on changes)
+
+### Frontend
+- `npm start` - Start development server
+- `npm run build` - Production build
+- `npm test` - Run unit tests
+
+## Usage
+
+1. Start the backend server
+2. Start the frontend application
+3. Navigate to the dashboard
+4. Use the interface to:
+   - View all courses
+   - Add new courses with images
+   - Edit existing courses
+   - Delete courses
+   - View course details
+
+## License
+
+ISC
