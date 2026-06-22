@@ -2,42 +2,43 @@ const multer = require("multer");
 const cloudinary = require("../config/cloudinary_config");
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
-console.log("I'm in multer")
+console.log("I'm in multer");
 
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: "course-management",
     format: async (req, file) => {
-      const mimeType = file.mimetype.split('/')[1];
-      return ['jpeg', 'png', 'gif', 'webp'].includes(mimeType) ? mimeType : 'png';
+      const mimeType = file.mimetype.split("/")[1];
+      return ["jpeg", "png", "gif", "webp"].includes(mimeType)
+        ? mimeType
+        : "png";
     },
     public_id: (req, file) => {
       const timestamp = Date.now();
-      const name = file.originalname.replace(/\.[^/.]+$/, "");
+      const name = file.originalname.split(".")[0]
       return `${name}-${timestamp}`;
     },
   },
 });
 
-console.log("storage: ", storage)
+console.log("storage: ", storage);
 
-const upload = multer({ 
+const upload = multer({
   storage: storage,
   limits: {
     fileSize: 5 * 1024 * 1024, // 5MB
   },
   fileFilter: (req, file, cb) => {
-    const allowedMimes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+    const allowedMimes = ["image/jpeg", "image/png", "image/gif", "image/webp"];
     if (allowedMimes.includes(file.mimetype)) {
       cb(null, true);
     } else {
-      cb(new Error('Only image files are allowed'));
+      cb(new Error("Only image files are allowed"));
     }
-  }
+  },
 });
 
-
-console.log("upload: ", upload)
+console.log("upload: ", upload);
 
 module.exports = { upload };
