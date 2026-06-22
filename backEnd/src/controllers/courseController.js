@@ -4,7 +4,7 @@ exports.createCourse = async (req, res) => {
   try {
     const { course, description, modules, duration, availability } = req.body;
 
-    const imageUrl = "https://course-management-system-with-backend-qvqd.vercel.app/" + req.file.filename;
+    const imageUrl = "https://course-management-system-with-backe.vercel.app/" + req.file.filename;
 
     const courseInfo = new Course({
       course,
