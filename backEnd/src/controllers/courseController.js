@@ -4,6 +4,10 @@ exports.createCourse = async (req, res) => {
   try {
     const { course, description, modules, duration, availability } = req.body;
 
+    if (!req.file) {
+      return res.status(400).json({ error: "Image file is required" });
+    }
+
     const imageUrl = "https://course-management-system-with-backe.vercel.app/" + req.file.filename;
 
     const courseInfo = new Course({
@@ -16,12 +20,10 @@ exports.createCourse = async (req, res) => {
     });
 
     const savedCourse = await courseInfo.save();
-    res.status(201).json(savedCourse);
+    return res.status(201).json(savedCourse);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: error.message });
   }
-
-  res.status(200).json({"message": "posted"})
 };
 
 exports.getAllCourses = async (_req, res) => {
@@ -39,7 +41,7 @@ exports.getCourseById = async (req, res) => {
   try {
     const courses = await Course.findById(id);
     if (!courses) {
-      return res.status(404).json("the course does not exist");
+      return res.status(404).json({ error: "the course does not exist" });
     }
 
     res.status(200).json(courses);
@@ -50,9 +52,8 @@ exports.getCourseById = async (req, res) => {
 
 exports.updateCourseBytId = async (req, res) => {
   try {
-    await Course.findByIdAndUpdate(req.params.id, req.body);
-
-    res.status(201).json("Changes made successfully");
+    const updatedCourse = await Course.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.status(200).json({ message: "Changes made successfully", data: updatedCourse });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -60,18 +61,18 @@ exports.updateCourseBytId = async (req, res) => {
 
 exports.deleteCourseById = async (req, res) => {
   try {
-    await Course.findByIdAndRemove(req.params.id);
-    res.status(201).json("Deleted successfully!");
+    await Course.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: "Deleted successfully!" });
   } catch (error) {
-    res.status(201).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 
 exports.deleteAllCourses = async (req, res) => {
   try {
     await Course.deleteMany({}, req.body);
-    res.status(201).json("Removed all courses!");
+    res.status(200).json({ message: "Removed all courses!" });
   } catch (error) {
-    res.status(404).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
