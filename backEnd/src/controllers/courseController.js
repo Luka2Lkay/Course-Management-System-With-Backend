@@ -8,7 +8,7 @@ exports.createCourse = async (req, res) => {
       return res.status(400).json({ error: "Image file is required" });
     }
 
-    const imageUrl = "https://course-management-system-with-backe.vercel.app/" + req.file.filename;
+    const imageUrl = req.file.path;
 
     const courseInfo = new Course({
       course,
@@ -52,8 +52,14 @@ exports.getCourseById = async (req, res) => {
 
 exports.updateCourseBytId = async (req, res) => {
   try {
-    const updatedCourse = await Course.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.status(200).json({ message: "Changes made successfully", data: updatedCourse });
+    const updatedCourse = await Course.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true },
+    );
+    res
+      .status(200)
+      .json({ message: "Changes made successfully", data: updatedCourse });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

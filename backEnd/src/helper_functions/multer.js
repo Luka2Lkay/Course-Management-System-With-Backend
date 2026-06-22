@@ -1,28 +1,28 @@
 const multer = require("multer");
-const fs = require("fs");
-const path = require("path");
+const cloudinary = require("../config/cloudinary_config");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
-const imagesDir = path.join(__dirname, "../../images");
-if (!fs.existsSync(imagesDir)) {
-  fs.mkdirSync(imagesDir, { recursive: true });
-}
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, imagesDir);
-  },
-  filename: function (req, file, cb) {
-    const timestamp = Date.now();
-    const extension = path.extname(file.originalname);
-    const name = path.basename(file.originalname, extension);
-    cb(null, `${name}-${timestamp}${extension}`);
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "course-management",
+    format: async (req, file) => {
+      const mimeType = file.mimetype.split('/')[1];
+      return ['jpeg', 'png', 'gif', 'webp'].includes(mimeType) ? mimeType : 'png';
+    },
+    public_id: (req, file) => {
+      const timestamp = Date.now();
+      file.originalname.split('.').pop();
+      const name = file.originalname.replace(/\.[^/.]+$/, "");
+      return `${name}-${timestamp}`;
+    },
   },
 });
 
 const upload = multer({ 
   storage: storage,
   limits: {
-    fileSize: 5 * 1024 * 1024,
+    fileSize: 5 * 1024 * 1024, // 5MB
   },
   fileFilter: (req, file, cb) => {
     const allowedMimes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
