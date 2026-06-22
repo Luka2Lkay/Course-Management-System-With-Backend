@@ -31,7 +31,6 @@ exports.getAllCourses = async (_req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-
 };
 
 exports.getCourseById = async (req, res) => {

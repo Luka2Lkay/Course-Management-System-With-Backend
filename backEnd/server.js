@@ -4,11 +4,16 @@ const express = require("express");
 const mongoose = require("mongoose");
 const courseRoutes = require("././src/routes/courseRoutes");
 const app = express();
-const {connectionStr} = require("./src/config/db_config")
+const { connectionStr } = require("./src/config/db_config");
 
 const port = 3300;
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:4200",
+    methods: ["GET", "PUT", "DELETE", "POST"],
+  }),
+);
 
 mongoose
   .connect(connectionStr.db)
@@ -19,9 +24,17 @@ mongoose
     console.log("Oops! You are not connected!", error);
   });
 
+process.on("SIGINT", async () => {
+  await mongoose.disconnect();
+  console.log("MongoDB connection closed due to app termination");
+  process.exit(0);
+});
+
 app.get("/", (req, res) => {
-  res.status(200).json({"message": "The Course Management System server is running..."})
-})
+  res
+    .status(200)
+    .json({ message: "The Course Management System server is running..." });
+});
 
 app.use("/course", courseRoutes);
 app.use("/images", express.static("images"));
