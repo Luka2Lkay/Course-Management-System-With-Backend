@@ -39,6 +39,11 @@ app.get("/", (req, res) => {
 app.use("/course", courseRoutes);
 app.use("/images", express.static("images"));
 
+app.use((err, req, res, next) => {
+  console.error("UPLOAD ERROR:", err.message);
+  res.status(400).json({ error: err.message });
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
