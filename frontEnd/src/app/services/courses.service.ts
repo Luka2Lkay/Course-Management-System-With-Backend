@@ -25,7 +25,7 @@ export class CoursesService {
 
   updateCourse(id: string, data: FormData): Observable<Course> {
     return this._http
-      .patch<Course>(`http://localhost:3300/course/${id}`, data)
+      .patch<Course>(`${this.apiUrl}/course/${id}`, data)
       .pipe(
         catchError((error: HttpErrorResponse) => {
           console.error('Update course failed: ', error);
