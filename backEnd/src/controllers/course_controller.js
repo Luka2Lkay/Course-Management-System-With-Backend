@@ -36,21 +36,6 @@ exports.getAllCourses = async (_req, res) => {
   }
 };
 
-exports.getCourseById = async (req, res) => {
-  const id = req.params.id;
-
-  try {
-    const courses = await Course.findById(id);
-    if (!courses) {
-      return res.status(404).json({ error: "the course does not exist" });
-    }
-
-    res.status(200).json(courses);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
 exports.updateCourseBytId = async (req, res) => {
   try {
     const { course, description, modules, duration, availability } = req.body;

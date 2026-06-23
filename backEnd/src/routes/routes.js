@@ -6,7 +6,6 @@ const { upload } = require("../helper_functions/multer.js");
 router.post("/create", upload.single("file"), courseController.createCourse);
 
 router.get("/", courseController.getAllCourses);
-router.get("/:id", courseController.getCourseById);
 
 router.patch("/:id", upload.single("file"), courseController.updateCourseBytId);
 
