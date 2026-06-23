@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const courseController = require("../controllers/courseController");
+const courseController = require("../controllers/course_controller.js");
 const { upload } = require("../helper_functions/multer.js");
 
 router.post("/create", upload.single("file"), courseController.createCourse);

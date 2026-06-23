@@ -3,7 +3,7 @@ require("node:dns/promises").setServers(["1.1.1.1", "8.8.8.8"]);
 const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
-const courseRoutes = require("././src/routes/courseRoutes");
+const courseRoutes = require("./src/routes/routes");
 const app = express();
 const { connectionStr } = require("./src/config/db_config");
 
