@@ -14,11 +14,39 @@ export class CoursesService {
   constructor(private _http: HttpClient) {}
 
   addCourses(data: any): Observable<any> {
-    return this._http.post<any>(this.apiUrl, data);
+    return this._http.post<any>(this.apiUrl, data).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Failed to add the course', error);
+
+        let errorMessage = 'Something went wrong';
+
+        if (error.error?.message) {
+          errorMessage = error.error.message;
+        } else if (error.status === 0) {
+          errorMessage = 'Unable to connect to the server';
+        }
+
+        return throwError(() => new Error(errorMessage));
+      }),
+    );
   }
 
   getAllCourses(): Observable<Course[]> {
-    return this._http.get<Course[]>(this.apiUrl);
+    return this._http.get<Course[]>(this.apiUrl).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Failed to fetch the courses', error);
+
+        let errorMessage = 'Something went wrong';
+
+        if (error.error?.message) {
+          errorMessage = error.error.message;
+        } else if (error.status === 0) {
+          errorMessage = 'Unable to connect to the server';
+        }
+
+        return throwError(() => new Error(errorMessage));
+      }),
+    );
   }
 
   deleteCourse(id: string): Observable<Course> {
