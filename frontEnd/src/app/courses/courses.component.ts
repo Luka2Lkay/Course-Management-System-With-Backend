@@ -12,8 +12,7 @@ import { Course } from '../interfaces/course';
 export class CoursesComponent implements OnInit {
   constructor(
     private _courseService: CoursesService,
-    private dialogue: MatDialog,
-    private router: Router
+    private router: Router,
   ) {}
 
   courses?: Course[];
@@ -34,15 +33,16 @@ export class CoursesComponent implements OnInit {
     alert('Are you sure you want to delete this course?');
     this._courseService.deleteCourse(id).subscribe({
       next: () => {
-    
         this.getAllCourses();
       },
-      error: console.log,
+      error: (error) => {
+        console.error('Failed to delete course: ', error.message);
+      },
     });
   }
 
   onSelect(id: string): void {
-    const shortenedId = id.toString().slice(5,10)
-    this.router.navigate(["/detail", shortenedId])
+    const shortenedId = id.toString().slice(5, 10);
+    this.router.navigate(['/detail', shortenedId]);
   }
 }

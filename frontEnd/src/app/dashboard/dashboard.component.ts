@@ -8,9 +8,11 @@ import { Course } from '../interfaces/course';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
-
 export class DashboardComponent implements OnInit {
-  constructor(private CoursesService: CoursesService, private router: Router) {}
+  constructor(
+    private CoursesService: CoursesService,
+    private router: Router,
+  ) {}
 
   availableCourses?: Course[];
 
@@ -27,12 +29,14 @@ export class DashboardComponent implements OnInit {
 
         this.availableCourses = available;
       },
-      error: console.log,
+      error: (error) => {
+        console.error('Failed to fetch users: ', error.message);
+      },
     });
   }
 
   onSelect(id: string): void {
-    const shortenedId = id.toString().slice(5,10)
-    this.router.navigate(["/detail", shortenedId])
+    const shortenedId = id.toString().slice(5, 10);
+    this.router.navigate(['/detail', shortenedId]);
   }
 }

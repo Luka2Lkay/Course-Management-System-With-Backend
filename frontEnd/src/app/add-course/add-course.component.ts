@@ -44,15 +44,6 @@ export class AddCourseComponent implements OnInit {
 
   getSelectedFile(event: any): void {
     this.selectedFile = event.target.files[0];
-
-    // if (this.selectedFile) {
-    //   this.cmsForm.patchValue({
-    //     file: this.selectedFile,
-    //   });
-
-    //   // important so Angular knows it changed
-    //   this.cmsForm.get('file')?.updateValueAndValidity();
-    // }
   }
 
   isImageSelected(): void {
@@ -85,15 +76,15 @@ export class AddCourseComponent implements OnInit {
           console.log('pairs: ', key, value);
         });
 
-        this._coursesService
-          .updateCourse(this.data._id, formData)
-          .subscribe({
-            next: () => {
-              this.reloadCurrentRoute();
-              this._dialogRef.close(true);
-            },
-            error: console.log,
-          });
+        this._coursesService.updateCourse(this.data._id, formData).subscribe({
+          next: () => {
+            this.reloadCurrentRoute();
+            this._dialogRef.close(true);
+          },
+          error: (error) => {
+            console.error('Failed to update: ', error.message);
+          },
+        });
       } else {
         let formData = new FormData();
         formData.append('course', this.cmsForm.value.course);
@@ -110,7 +101,9 @@ export class AddCourseComponent implements OnInit {
             this.reloadCurrentRoute();
             this._dialogRef.close(true);
           },
-          error: console.log,
+          error: (error) => {
+            console.error('Failed to add: ', error.message);
+          },
         });
       }
     }
