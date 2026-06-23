@@ -72,10 +72,6 @@ export class AddCourseComponent implements OnInit {
           formData.append('file', this.selectedFile);
         }
 
-        formData.forEach((key, value) => {
-          console.log('pairs: ', key, value);
-        });
-
         this._coursesService.updateCourse(this.data._id, formData).subscribe({
           next: () => {
             this.reloadCurrentRoute();
