@@ -44,6 +44,15 @@ export class AddCourseComponent implements OnInit {
 
   getSelectedFile(event: any): void {
     this.selectedFile = event.target.files[0];
+
+    // if (this.selectedFile) {
+    //   this.cmsForm.patchValue({
+    //     file: this.selectedFile,
+    //   });
+
+    //   // important so Angular knows it changed
+    //   this.cmsForm.get('file')?.updateValueAndValidity();
+    // }
   }
 
   isImageSelected(): void {
@@ -62,9 +71,40 @@ export class AddCourseComponent implements OnInit {
   save() {
     if (this.cmsForm.valid) {
       if (this.data) {
-        console.log("the data is available")
+        let formData = new FormData();
+        // formData.append('course', this.cmsForm.value);
+        // formData.append('description', this.cmsForm.value.description);
+        // formData.append('modules', this.cmsForm.value.modules)
+        // formData.append('duration', this.cmsForm.value.duration);
+        // formData.append('availability', this.cmsForm.value.availability);
+        // formData.append('file', this.selectedFile);
+
+        Object.keys(this.cmsForm.value).forEach((key) => {
+          formData.append(key, this.cmsForm.value[key]);
+        });
+
+        if (this.selectedFile) {
+          formData.append('file', this.selectedFile);
+        }
+
+        // for (const pair of formData.entries()) {
+        //   console.log('pairs: ', pair[0], pair[1]);
+        // }
+
+        formData.forEach((key, value) => {
+          console.log('pairs: ', key, value);
+        });
+
+        // console.log('Selected file', this.selectedFile);
+
+        // console.log('data', formData);
+        // const file = this.cmsForm.get('file')?.value;
+        // this.cmsForm.patchValue({
+        //   file: this.selectedFile,
+        // });
+        // console.log('form values: ', this.cmsForm.value);
         this._coursesService
-          .updateCourse(this.data._id, this.cmsForm.value)
+          .updateCourse(this.data._id, formData)
           .subscribe({
             next: () => {
               this.reloadCurrentRoute();
@@ -85,7 +125,6 @@ export class AddCourseComponent implements OnInit {
 
         this._coursesService.addCourses(formData).subscribe({
           next: () => {
-            console.log(formData.get('course'));
             this.reloadCurrentRoute();
             this._dialogRef.close(true);
           },
