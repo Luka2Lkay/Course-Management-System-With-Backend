@@ -1,3 +1,4 @@
+require("dotenv").config();
 require("node:dns/promises").setServers(["1.1.1.1", "8.8.8.8"]);
 const cors = require("cors");
 const express = require("express");
@@ -7,11 +8,13 @@ const app = express();
 const { connectionStr } = require("./src/config/db_config");
 
 const port = 3300;
+const ORIGIN = process.env.ORIGIN || "http://localhost:4200";
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: "*",
+    origin: `${ORIGIN}`,
     methods: ["GET", "PATCH", "DELETE", "POST"],
   }),
 );
