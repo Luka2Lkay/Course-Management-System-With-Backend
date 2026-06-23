@@ -30,7 +30,7 @@ export class CoursesComponent implements OnInit {
     });
   }
 
-  removeCourse(id: number): void {
+  removeCourse(id: string): void {
     alert('Are you sure you want to delete this course?');
     this._courseService.deleteCourse(id).subscribe({
       next: () => {
@@ -41,7 +41,7 @@ export class CoursesComponent implements OnInit {
     });
   }
 
-  onSelect(id: number): void {
+  onSelect(id: string): void {
     const shortenedId = id.toString().slice(5,10)
     this.router.navigate(["/detail", shortenedId])
   }

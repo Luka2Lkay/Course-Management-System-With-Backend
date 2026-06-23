@@ -10,8 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-course.component.css'],
 })
 export class AddCourseComponent implements OnInit {
-
-  cmsForm: FormGroup = new FormGroup ({
+  cmsForm: FormGroup = new FormGroup({
     course: new FormControl(''),
     modules: new FormControl(''),
     duration: new FormControl(''),
@@ -27,7 +26,7 @@ export class AddCourseComponent implements OnInit {
     private _dialogRef: MatDialogRef<AddCourseComponent>,
     private _coursesService: CoursesService,
     private router: Router,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) {}
 
   ngOnInit(): void {
@@ -63,6 +62,7 @@ export class AddCourseComponent implements OnInit {
   save() {
     if (this.cmsForm.valid) {
       if (this.data) {
+        console.log("the data is available")
         this._coursesService
           .updateCourse(this.data._id, this.cmsForm.value)
           .subscribe({

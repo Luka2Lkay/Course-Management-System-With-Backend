@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  onSelect(id: number): void {
+  onSelect(id: string): void {
     const shortenedId = id.toString().slice(5,10)
     this.router.navigate(["/detail", shortenedId])
   }

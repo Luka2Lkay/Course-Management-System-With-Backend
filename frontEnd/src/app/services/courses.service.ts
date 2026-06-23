@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError, catchError } from 'rxjs';
 import { Course } from '../interfaces/course';
 
 @Injectable({
@@ -19,15 +19,31 @@ export class CoursesService {
     return this._http.get<Course[]>(`${this.apiUrl}/course`);
   }
 
-  deleteCourse(id: number): Observable<Course> {
+  deleteCourse(id: string): Observable<Course> {
     return this._http.delete<Course>(`${this.apiUrl}/${id}`);
   }
 
-  updateCourse(id: number, data: FormData): Observable<Course> {
-    return this._http.put<Course>(`${this.apiUrl}/${id}`, data);
+  updateCourse(id: string, data: FormData): Observable<Course> {
+    return this._http
+      .patch<Course>(`http://localhost:3300/course/${id}`, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          console.error('Update course failed: ', error);
+
+          let errorMessage = 'Something went wrong!';
+
+          if (error.error?.message) {
+            errorMessage = error.error.message;
+          } else if (error.status === 0) {
+            errorMessage = 'Unable to connect to the server';
+          }
+
+          return throwError(() => new Error(errorMessage));
+        }),
+      );
   }
 
-  getCourse(id: number): Observable<Course> {
-    return this._http.get<Course>(`${this.apiUrl}/'${id}`);
-  }
+  // getCourse(id: number): Observable<Course> {
+  //   return this._http.get<Course>(`${this.apiUrl}/'${id}`);
+  // }
 }
