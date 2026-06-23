@@ -8,7 +8,7 @@ router.post("/create", upload.single("file"), courseController.createCourse);
 router.get("/", courseController.getAllCourses);
 router.get("/:id", courseController.getCourseById);
 
-router.put("/:id", courseController.updateCourseBytId);
+router.patch("/:id", courseController.updateCourseBytId);
 
 router.delete("/:id", courseController.deleteCourseById);
 

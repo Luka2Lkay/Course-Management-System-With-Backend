@@ -8,6 +8,7 @@ const { connectionStr } = require("./src/config/db_config");
 
 const port = 3300;
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
     origin: "http://localhost:4200",

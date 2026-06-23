@@ -56,11 +56,14 @@ exports.getCourseById = async (req, res) => {
 
 exports.updateCourseBytId = async (req, res) => {
   try {
-    const updatedCourse = await Course.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true },
-    );
+    const { id } = req.params;
+
+    if (!id) {
+      res.status(404).json({ message: "missing course id" });
+    }
+
+    const updatedCourse = await Course.findByIdAndUpdate(id, req.body, {new:true});
+
     res
       .status(200)
       .json({ message: "Changes made successfully", data: updatedCourse });
