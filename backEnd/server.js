@@ -3,7 +3,7 @@ require("node:dns/promises").setServers(["1.1.1.1", "8.8.8.8"]);
 const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
-const courseRoutes = require("./src/routes/routes");
+const {courseRoutes} = require("./src/routes/routes");
 const app = express();
 const { connectionStr } = require("./src/config/db_config");
 
@@ -40,7 +40,7 @@ app.get("/", (req, res) => {
     .json({ message: "The Course Management System server is running..." });
 });
 
-app.use("/course", courseRoutes);
+courseRoutes(app)
 app.use("/images", express.static("images"));
 
 app.use((err, req, res, next) => {

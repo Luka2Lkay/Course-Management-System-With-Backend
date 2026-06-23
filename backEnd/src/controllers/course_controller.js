@@ -36,7 +36,7 @@ exports.getAllCourses = async (_req, res) => {
   }
 };
 
-exports.updateCourseById = async (req, res) => {
+exports.updateCourse = async (req, res) => {
   try {
     const { course, description, modules, duration, availability } = req.body;
 
@@ -81,7 +81,7 @@ exports.updateCourseById = async (req, res) => {
   }
 };
 
-exports.deleteCourseById = async (req, res) => {
+exports.deleteCourse = async (req, res) => {
   try {
     await Course.findByIdAndDelete(req.params.id);
     res.status(200).json({ message: "Deleted successfully!" });

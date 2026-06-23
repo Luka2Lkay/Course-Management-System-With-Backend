@@ -1,16 +1,27 @@
 const express = require("express");
-const router = express.Router();
-const courseController = require("../controllers/course_controller.js");
+
+const {
+  createCourse,
+  updateCourse,
+  deleteAllCourses,
+  getAllCourses,
+  deleteCourse,
+} = require("../controllers/course_controller.js");
 const { upload } = require("../helper_functions/multer.js");
 
-router.post("/create", upload.single("file"), courseController.createCourse);
+const courseRoutes = (app) => {
+  const router = express.Router();
+  router.post("/", upload.single("file"), createCourse);
 
-router.get("/", courseController.getAllCourses);
+  router.get("/", getAllCourses);
 
-router.patch("/:id", upload.single("file"), courseController.updateCourseById);
+  router.patch("/:id", upload.single("file"), updateCourse);
 
-router.delete("/:id", courseController.deleteCourseById);
+  router.delete("/:id", deleteCourse);
 
-router.delete("/remove", courseController.deleteAllCourses);
+  router.delete("/", deleteAllCourses);
 
-module.exports = router;
+  app.use("/api/courses", router);
+};
+
+module.exports = {courseRoutes}
