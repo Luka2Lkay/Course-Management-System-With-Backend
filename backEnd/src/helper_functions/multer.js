@@ -2,7 +2,8 @@ const multer = require("multer");
 const cloudinary = require("../config/cloudinary_config");
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
-console.log("I'm in multer");
+
+console.log("I am in multer")
 
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
@@ -23,8 +24,6 @@ const storage = new CloudinaryStorage({
   },
 });
 
-console.log("storage: ", storage);
-
 const upload = multer({
   storage: storage,
   limits: {
@@ -39,7 +38,5 @@ const upload = multer({
     }
   },
 });
-
-console.log("upload: ", upload);
 
 module.exports = { upload };

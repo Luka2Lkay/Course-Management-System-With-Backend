@@ -10,8 +10,6 @@ exports.createCourse = async (req, res) => {
 
     const imageUrl = req.file.path;
 
-    console.log("image url: ", imageUrl);
-
     const courseInfo = new Course({
       course,
       description,
@@ -25,7 +23,6 @@ exports.createCourse = async (req, res) => {
 
     return res.status(201).json(savedCourse);
   } catch (error) {
-    console.error("nantsi error");
     return res.status(500).json({ error: error.message });
   }
 };
@@ -56,13 +53,54 @@ exports.getCourseById = async (req, res) => {
 
 exports.updateCourseBytId = async (req, res) => {
   try {
+    const { course, description, modules, duration, availability } = req.body;
+
+    const imageUrl = req.file.path;
+
+    console.log("image url: ", imageUrl);
+
+    const courseInfo = new Course({
+      course,
+      description,
+      modules,
+      duration,
+      availability,
+      imageUrl,
+    });
+
     const { id } = req.params;
 
     if (!id) {
       res.status(404).json({ message: "missing course id" });
     }
 
-    const updatedCourse = await Course.findByIdAndUpdate(id, req.body, {new:true});
+    //     const updatedCourse = await Course.findByIdAndUpdate(
+    //   id, {$set: courseInfo},
+    //   {
+    //     new: true,
+    //   },
+    // );
+
+    const updatedCourse = await Course.findByIdAndUpdate(
+      id,
+      {
+        $set: {
+          course,
+          description,
+          modules,
+          duration,
+          availability,
+          imageUrl,
+        },
+      },
+      {
+        new: true,
+      },
+    );
+
+    //    const updatedCourse = await Course.findByIdAndUpdate(id, req.body, {
+    //   new: true,
+    // });
 
     res
       .status(200)
