@@ -36,22 +36,11 @@ exports.getAllCourses = async (_req, res) => {
   }
 };
 
-exports.updateCourseBytId = async (req, res) => {
+exports.updateCourseById = async (req, res) => {
   try {
     const { course, description, modules, duration, availability } = req.body;
 
-    const imageUrl = req.file.path;
-
-    console.log("image url: ", imageUrl);
-
-    const courseInfo = new Course({
-      course,
-      description,
-      modules,
-      duration,
-      availability,
-      imageUrl,
-    });
+    let updatedCourse;
 
     const { id } = req.params;
 
@@ -59,33 +48,30 @@ exports.updateCourseBytId = async (req, res) => {
       res.status(404).json({ message: "missing course id" });
     }
 
-    //     const updatedCourse = await Course.findByIdAndUpdate(
-    //   id, {$set: courseInfo},
-    //   {
-    //     new: true,
-    //   },
-    // );
+    if (!req.file) {
+      updatedCourse = await Course.findByIdAndUpdate(id, req.body, {
+        returnDocument: "after",
+      });
+    } else {
+      const imageUrl = req.file.path;
 
-    const updatedCourse = await Course.findByIdAndUpdate(
-      id,
-      {
-        $set: {
-          course,
-          description,
-          modules,
-          duration,
-          availability,
-          imageUrl,
+      updatedCourse = await Course.findByIdAndUpdate(
+        id,
+        {
+          $set: {
+            course,
+            description,
+            modules,
+            duration,
+            availability,
+            imageUrl,
+          },
         },
-      },
-      {
-        new: true,
-      },
-    );
-
-    //    const updatedCourse = await Course.findByIdAndUpdate(id, req.body, {
-    //   new: true,
-    // });
+        {
+          returnDocument: "after",
+        },
+      );
+    }
 
     res
       .status(200)
