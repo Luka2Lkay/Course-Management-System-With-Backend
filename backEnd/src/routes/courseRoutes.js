@@ -3,19 +3,7 @@ const router = express.Router();
 const courseController = require("../controllers/courseController");
 const { upload } = require("../helper_functions/multer.js");
 
-router.post(
-  "/create",
-  (req, res, next) => {
-    console.log("Start multer upload!");
-    next();
-  },
-  upload.single("file"),
-  (req, res, next) => {
-    console.log("Multer passed!");
-    next();
-  },
-  courseController.createCourse,
-);
+router.post("/create", upload.single("file"), courseController.createCourse);
 
 router.get("/", courseController.getAllCourses);
 router.get("/:id", courseController.getCourseById);
