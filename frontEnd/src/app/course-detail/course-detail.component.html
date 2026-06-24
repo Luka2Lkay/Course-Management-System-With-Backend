@@ -7,7 +7,7 @@
         <img style="margin-bottom: 0.5em" mat-card-image height="250px" src={{selectedCourse.imageUrl}} alt={{selectedCourse.course}}>
         <mat-card-content>
             <p><strong>Course Id: </strong> {{selectedCourse._id.toString().slice(5, 10) | uppercase}}</p>
-            <p>{{selectedCourse.description}}</p>
+            <div class="description">{{selectedCourse.description}}</div>
 
             <div class="specifics">
                 <p>Duration: {{selectedCourse.duration}}</p>

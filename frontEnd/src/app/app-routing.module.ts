@@ -5,10 +5,10 @@ import { CoursesComponent } from './courses/courses.component';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'available-courses', component: DashboardComponent },
   { path: 'courses', component: CoursesComponent },
   { path: 'detail/:id', component: CourseDetailComponent },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },];
+  { path: '', redirectTo: '/available-courses', pathMatch: 'full' },];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
