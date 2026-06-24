@@ -2,6 +2,12 @@
   flex: 1 1 auto;
 }
 
+.btn {
+  position: relative;
+  top: 2em;
+  left: 2em;
+}
+
 nav a {
   text-decoration: none;
   font-size: 1.5rem;
@@ -12,12 +18,8 @@ nav a:hover {
   color: #000080;
 }
 
-nav a.active{
-   color: #000080
-}
-
-nav a:active {
-  color: #000080
+nav a.active {
+  color: #000080;
 }
 
 nav {
