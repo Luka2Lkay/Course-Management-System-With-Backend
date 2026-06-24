@@ -5,6 +5,7 @@ import { Course } from '../interfaces/course';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAnimationsComponent } from '../dialog-animations/dialog-animations.component';
+import { CourseEventService } from '../services/course-event.service';
 
 @Component({
   selector: 'app-courses',
@@ -17,6 +18,7 @@ export class CoursesComponent implements OnInit {
     private router: Router,
     private _snackBar: MatSnackBar,
     public dialog: MatDialog,
+    private _courseEventService: CourseEventService,
   ) {}
 
   courses?: Course[];
@@ -25,6 +27,10 @@ export class CoursesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllCourses();
+
+    this._courseEventService.courseRefresh$.subscribe(() => {
+      this.getAllCourses();
+    });
   }
 
   openSnackBar(message: string, action: string) {

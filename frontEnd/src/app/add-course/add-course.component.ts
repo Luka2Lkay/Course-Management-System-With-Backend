@@ -3,7 +3,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CoursesService } from '../services/courses.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-course',
@@ -26,7 +25,7 @@ export class AddCourseComponent implements OnInit {
   constructor(
     private _dialogRef: MatDialogRef<AddCourseComponent>,
     private _coursesService: CoursesService,
-    private router: Router,
+
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _snackBar: MatSnackBar,
   ) {}
@@ -37,13 +36,6 @@ export class AddCourseComponent implements OnInit {
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action);
-  }
-
-  reloadCurrentRoute() {
-    const currentUrl = this.router.url;
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate([currentUrl]);
-    });
   }
 
   selectedFile?: any;
@@ -77,7 +69,6 @@ export class AddCourseComponent implements OnInit {
 
         this._coursesService.updateCourse(this.data._id, formData).subscribe({
           next: () => {
-            this.reloadCurrentRoute();
             this._dialogRef.close(true);
           },
           error: (error) => {
@@ -97,7 +88,6 @@ export class AddCourseComponent implements OnInit {
 
         this._coursesService.addCourses(formData).subscribe({
           next: () => {
-            this.reloadCurrentRoute();
             this._dialogRef.close(true);
           },
           error: (error) => {

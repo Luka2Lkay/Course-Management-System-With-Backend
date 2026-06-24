@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CoursesService } from '../services/courses.service';
 import { Course } from '../interfaces/course';
+import { CourseEventService } from '../services/course-event.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,12 +13,17 @@ export class DashboardComponent implements OnInit {
   constructor(
     private CoursesService: CoursesService,
     private router: Router,
+    private _courseEventService: CourseEventService,
   ) {}
 
   availableCourses?: Course[];
 
   ngOnInit(): void {
     this.getAllCourses();
+
+    this._courseEventService.courseRefresh$.subscribe(() => {
+      this.getAllCourses();
+    });
   }
 
   getAllCourses() {
