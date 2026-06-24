@@ -154,7 +154,16 @@ CONNECTION_STRING=mongodb+srv://username:password@cluster.mongodb.net/course-man
 CLOUDINARY_CLOUD_NAME=your_cloud_name
 CLOUDINARY_API_KEY=your_api_key
 CLOUDINARY_API_SECRET=your_api_secret
+LOCAL_URL=http://localhost:4200
+LIVE_URL=Your-live-url
 ```
+
+Run the `ng g environments` command to generate environments files. Write the following variables in both files:
+
+export const environment = {
+  apiUrl: 'YOUR-HOSTED-URL',
+  localUrl: 'YOUR-LOCALHOST-PATH',
+};
 
 **Important:** Never commit `.env` to version control. Use `.env.example` as a template.
 
