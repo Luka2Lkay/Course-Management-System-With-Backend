@@ -29,11 +29,18 @@ export class CoursesComponent implements OnInit {
     this._snackBar.open(message, action);
   }
 
-  openDialog(): void {
-    this.dialog.open(DialogAnimationsComponent, {
+  openDialog(id: string): void {
+    const dialogRef = this.dialog.open(DialogAnimationsComponent, {
       width: '250px',
       enterAnimationDuration: '200ms',
       exitAnimationDuration: '20ms',
+      data: { id },
+    });
+
+    dialogRef.afterClosed().subscribe((isDeleted) => {
+      if (isDeleted) {
+        this.getAllCourses();
+      }
     });
   }
 
@@ -41,18 +48,6 @@ export class CoursesComponent implements OnInit {
     this._courseService.getAllCourses().subscribe({
       next: (res) => {
         this.courses = res;
-      },
-    });
-  }
-
-  removeCourse(id: string): void {
-  
-    this._courseService.deleteCourse(id).subscribe({
-      next: () => {
-        this.getAllCourses();
-      },
-      error: (error) => {
-        console.error('Failed to delete course: ', error.message);
       },
     });
   }
