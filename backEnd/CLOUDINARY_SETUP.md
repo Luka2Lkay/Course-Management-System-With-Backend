@@ -31,17 +31,21 @@ This project uses **Cloudinary** for cloud-based image storage and delivery.
 ### 3. Add Credentials to Environment Variables
 
 1. Copy `.env.example` to `.env`:
+
    ```bash
    cp .env.example .env
    ```
 
 2. Open `.env` and fill in your Cloudinary credentials:
+
    ```env
    CONNECTION_STRING=mongodb+srv://...
 
    CLOUDINARY_CLOUD_NAME=your_cloud_name
    CLOUDINARY_API_KEY=your_api_key
    CLOUDINARY_API_SECRET=your_api_secret
+   LOCAL_URL=http://localhost:4200
+   LIVE_URL=Your-live-url
    ```
 
 ### 4. Install Dependencies
@@ -51,6 +55,7 @@ npm install cloudinary multer-storage-cloudinary
 ```
 
 Already installed? Verify in `package.json`:
+
 ```json
 {
   "dependencies": {
