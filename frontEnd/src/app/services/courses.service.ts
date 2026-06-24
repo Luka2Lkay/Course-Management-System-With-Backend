@@ -14,7 +14,7 @@ export class CoursesService {
   constructor(private _http: HttpClient) {}
 
   addCourses(data: any): Observable<any> {
-    return this._http.post<any>(this.apiUrl, data).pipe(
+    return this._http.post<any>(this.localUrl, data).pipe(
       catchError((error: HttpErrorResponse) => {
         console.error('Failed to add the course', error);
 

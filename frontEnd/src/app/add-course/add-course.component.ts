@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CoursesService } from '../services/courses.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 @Component({
@@ -27,10 +28,15 @@ export class AddCourseComponent implements OnInit {
     private _coursesService: CoursesService,
     private router: Router,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private _snackBar: MatSnackBar,
   ) {}
 
   ngOnInit(): void {
     this.cmsForm.patchValue(this.data);
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
   }
 
   reloadCurrentRoute() {
@@ -49,13 +55,10 @@ export class AddCourseComponent implements OnInit {
   isImageSelected(): void {
     const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
 
-    if (!this.selectedFile) {
-      alert('Upload an image!');
-    } else if (
-      this.selectedFile &&
-      !allowedTypes.includes(this.selectedFile.type)
-    ) {
-      alert('Upload images only');
+    if (this.selectedFile && !allowedTypes.includes(this.selectedFile.type)) {
+      this.openSnackBar('Upload images only', 'X');
+    } else if (!this.selectedFile) {
+      this.openSnackBar('Image is required', 'X');
     }
   }
 
