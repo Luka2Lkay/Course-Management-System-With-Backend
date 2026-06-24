@@ -12,7 +12,6 @@ export class AppComponent {
   title = 'course-management-system';
   constructor(
     private _dialog: MatDialog,
-    private _courseService: CoursesService,
   ) {}
 
   openForm() {
