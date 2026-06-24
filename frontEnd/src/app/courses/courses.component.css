@@ -14,8 +14,8 @@
     display: flex;
 }
 
-.courseId 
-{   min-width: 8em;
+.courseId {
+    min-width: 8em;
     max-width: 8em;
     font-weight: bolder;
     background-color: #4e6074;
@@ -25,3 +25,6 @@
     text-decoration: line-through;
 }
 
+.container {
+    margin-top: 4em;
+}
