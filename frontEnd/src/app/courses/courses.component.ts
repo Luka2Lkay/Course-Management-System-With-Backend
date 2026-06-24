@@ -29,20 +29,12 @@ export class CoursesComponent implements OnInit {
     this._snackBar.open(message, action);
   }
 
-  openDialog(
-    enterAnimationDuration: string,
-    exitAnimationDuration: string,
-  ): void {
-    // this.dialog.open(DialogAnimationsComponent, {
-    //   width: '250px',
-    //   enterAnimationDuration,
-    //   exitAnimationDuration,
-    // });
-        console.log("test")
-  }
-
-  test():void{
-
+  openDialog(): void {
+    this.dialog.open(DialogAnimationsComponent, {
+      width: '250px',
+      enterAnimationDuration: '200ms',
+      exitAnimationDuration: '20ms',
+    });
   }
 
   getAllCourses(): void {
@@ -54,7 +46,7 @@ export class CoursesComponent implements OnInit {
   }
 
   removeCourse(id: string): void {
-    this.openDialog('200', '300');
+  
     this._courseService.deleteCourse(id).subscribe({
       next: () => {
         this.getAllCourses();

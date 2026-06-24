@@ -8,9 +8,6 @@
 
 .row {
     display: flex;
-    gap: 10px
-}
-
-mat-form-field {
+    gap: 10px;
     width: 100%;
 }
