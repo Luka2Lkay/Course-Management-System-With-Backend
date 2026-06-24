@@ -6,6 +6,8 @@ A full-stack application for managing course information with image uploads, bui
 
 This system manages courses using **Angular** for a dynamic frontend, **Express.js** for backend logic, **MongoDB** for flexible data storage, **Cloudinary** for cloud image storage, and **Multer** for file handling. Users can add, edit, update, and remove courses through an intuitive user-friendly interface. The backend handles data validation, interacts with the database, and manages image uploads to the cloud. This architecture provides a scalable and maintainable solution for managing course information effectively.
 
+:earth_americas: https://course-management-system-with-backe-beta.vercel.app/available-courses
+
 ## Tech Stack
 
 **Frontend:**
