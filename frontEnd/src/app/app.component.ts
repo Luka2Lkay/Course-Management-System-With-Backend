@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { MatDialog } from '@angular/material/dialog';
-import { CoursesService } from './services/courses.service';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +9,7 @@ import { CoursesService } from './services/courses.service';
 })
 export class AppComponent {
   title = 'course-management-system';
-  constructor(
-    private _dialog: MatDialog,
-  ) {}
+  constructor(private _dialog: MatDialog) {}
 
   openForm() {
     this._dialog.open(AddCourseComponent);

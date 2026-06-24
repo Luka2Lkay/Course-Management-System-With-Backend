@@ -14,7 +14,7 @@ export class CoursesService {
   constructor(private _http: HttpClient) {}
 
   addCourses(data: any): Observable<any> {
-    return this._http.post<any>(this.localUrl, data).pipe(
+    return this._http.post<any>(this.apiUrl, data).pipe(
       catchError((error: HttpErrorResponse) => {
         console.error('Failed to add the course', error);
 
@@ -50,7 +50,7 @@ export class CoursesService {
   }
 
   deleteCourse(id: string): Observable<Course> {
-    return this._http.delete<Course>(`${this.localUrl}${id}`).pipe(
+    return this._http.delete<Course>(`${this.apiUrl}${id}`).pipe(
       catchError((error: HttpErrorResponse) => {
         console.error('Failed to delete the course', error);
 
@@ -68,7 +68,7 @@ export class CoursesService {
   }
 
   updateCourse(id: string, data: FormData): Observable<Course> {
-    return this._http.patch<Course>(`${this.localUrl}${id}`, data).pipe(
+    return this._http.patch<Course>(`${this.apiUrl}${id}`, data).pipe(
       catchError((error: HttpErrorResponse) => {
         console.error('Update course failed: ', error);
 
