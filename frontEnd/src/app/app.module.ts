@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,7 +24,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CoursesComponent } from './courses/courses.component';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { DialogAnimationsComponent } from './dialog-animations/dialog-animations.component';
-import { RouterLink, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { RouterLink, RouterModule } from '@angular/router';
     MatListModule,
     MatSnackBarModule,
     RouterModule,
+    MatProgressSpinnerModule,
   ],
 
   providers: [],

@@ -21,6 +21,8 @@ export class CoursesComponent implements OnInit {
 
   courses?: Course[];
 
+  isLoading: boolean = false;
+
   ngOnInit(): void {
     this.getAllCourses();
   }
@@ -45,9 +47,15 @@ export class CoursesComponent implements OnInit {
   }
 
   getAllCourses(): void {
+    this.isLoading = true;
     this._courseService.getAllCourses().subscribe({
       next: (res) => {
         this.courses = res;
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('failed to fetch courses: ', error.message);
+        this.isLoading = false;
       },
     });
   }

@@ -6,6 +6,10 @@
     padding-top: 10px;
 }
 
+#description {
+    width: 100%;
+}
+
 .row {
     display: flex;
     gap: 10px;
