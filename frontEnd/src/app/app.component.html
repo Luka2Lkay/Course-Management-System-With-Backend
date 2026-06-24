@@ -2,11 +2,19 @@
 
   <span>Course Management System</span>
   <span class="example-spacer"></span>
-  <button mat-raised-button (click)="openForm()" class="add-course">Add Course</button>
+  <!-- <button mat-raised-button (click)="openForm()" class="add-course">Add Course</button> -->
+  <nav class="links">
+    <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+    <a routerLink="/courses" routerLinkActive="active">View All Courses</a>
+  </nav>
+
+
 </mat-toolbar>
 
 <nav>
   <button mat-raised-button><a routerLink="/dashboard">Dashboard</a></button>
+  <button mat-raised-button (click)="openForm()">Add Course</button>
+
   <button mat-raised-button><a routerLink="/courses">Courses</a></button>
 </nav>
 

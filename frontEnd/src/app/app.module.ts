@@ -23,6 +23,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CoursesComponent } from './courses/courses.component';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { DialogAnimationsComponent } from './dialog-animations/dialog-animations.component';
+import { RouterLink, RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { DialogAnimationsComponent } from './dialog-animations/dialog-animations
     MatCardModule,
     MatListModule,
     MatSnackBarModule,
+    RouterModule,
   ],
 
   providers: [],
