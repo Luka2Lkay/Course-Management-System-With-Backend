@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class CoursesService {
   apiUrl = environment.apiUrl;
-  localUrl = environment.localUrl;
+  localUrl = (environment as any).localUrl;
 
   constructor(private _http: HttpClient) {}
 
@@ -50,7 +50,7 @@ export class CoursesService {
   }
 
   deleteCourse(id: string): Observable<Course> {
-    return this._http.delete<Course>(`${this.apiUrl}${id}`).pipe(
+    return this._http.delete<Course>(`${this.localUrl}${id}`).pipe(
       catchError((error: HttpErrorResponse) => {
         console.error('Failed to delete the course', error);
 

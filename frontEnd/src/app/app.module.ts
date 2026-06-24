@@ -22,6 +22,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CoursesComponent } from './courses/courses.component';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
+import { DialogAnimationsComponent } from './dialog-animations/dialog-animations.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CourseDetailComponent } from './course-detail/course-detail.component';
     DashboardComponent,
     CoursesComponent,
     CourseDetailComponent,
+    DialogAnimationsComponent,
   ],
   imports: [
     BrowserModule,

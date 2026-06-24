@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CoursesService } from '../services/courses.service';
-import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Course } from '../interfaces/course';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogAnimationsComponent } from '../dialog-animations/dialog-animations.component';
 
 @Component({
   selector: 'app-courses',
@@ -13,12 +15,34 @@ export class CoursesComponent implements OnInit {
   constructor(
     private _courseService: CoursesService,
     private router: Router,
+    private _snackBar: MatSnackBar,
+    public dialog: MatDialog,
   ) {}
 
   courses?: Course[];
 
   ngOnInit(): void {
     this.getAllCourses();
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
+
+  openDialog(
+    enterAnimationDuration: string,
+    exitAnimationDuration: string,
+  ): void {
+    // this.dialog.open(DialogAnimationsComponent, {
+    //   width: '250px',
+    //   enterAnimationDuration,
+    //   exitAnimationDuration,
+    // });
+        console.log("test")
+  }
+
+  test():void{
+
   }
 
   getAllCourses(): void {
@@ -30,7 +54,7 @@ export class CoursesComponent implements OnInit {
   }
 
   removeCourse(id: string): void {
-    alert('Are you sure you want to delete this course?');
+    this.openDialog('200', '300');
     this._courseService.deleteCourse(id).subscribe({
       next: () => {
         this.getAllCourses();
