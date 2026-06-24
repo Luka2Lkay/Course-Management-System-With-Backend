@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   availableCourses?: Course[];
+  isLoading: boolean = false;
 
   ngOnInit(): void {
     this.getAllCourses();
@@ -27,6 +28,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getAllCourses() {
+    this.isLoading = true;
     this.CoursesService.getAllCourses().subscribe({
       next: (res) => {
         const available = res.filter((courses: Course) => {
@@ -34,9 +36,11 @@ export class DashboardComponent implements OnInit {
         });
 
         this.availableCourses = available;
+        this.isLoading = false;
       },
       error: (error) => {
         console.error('Failed to fetch users: ', error.message);
+        this.isLoading = false;
       },
     });
   }

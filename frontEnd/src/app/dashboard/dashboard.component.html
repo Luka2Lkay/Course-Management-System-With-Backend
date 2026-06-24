@@ -1,4 +1,9 @@
-<h2 style="text-align: center;"><u>Available Courses</u></h2>
+<h2><u>Available Courses</u></h2>
+
+<div class="container">
+  <div *ngIf="isLoading" class="spinner">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
 
 <div class="courses-menu">
   <div *ngFor="let course of availableCourses">
@@ -9,4 +14,8 @@
       </mat-card-content>
     </mat-card>
   </div>
+</div>
+
+<div *ngIf="availableCourses?.length === 0">
+  <h3>No courses available</h3>
 </div>
