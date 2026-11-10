@@ -22,5 +22,8 @@
   "devDependencies": {
     "dotenv": "^16.4.5",
     "nodemon": "^3.1.14"
+  },
+  "allowScripts": {
+    "core-js@3.49.0": true
   }
 }
