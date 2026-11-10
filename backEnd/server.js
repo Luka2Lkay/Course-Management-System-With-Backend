@@ -19,20 +19,17 @@ app.use(
   }),
 );
 
-mongoose
-  .connect(connectionStr.db)
-  .then(() => {
-    console.log("You are connected");
-  })
-  .catch((error) => {
-    console.log("Oops! You are not connected!", error);
-  });
+const connectDB = async () => {
+  try {
+    await mongoose.connect(db.connectionString);
+    console.log("Connected to MongoDB");
+  } catch (error) {
+    console.error("Failed to connect to MongoDB:", error);
+    throw error;
+  }
+};
 
-process.on("SIGINT", async () => {
-  await mongoose.disconnect();
-  console.log("MongoDB connection closed due to app termination");
-  process.exit(0);
-});
+connectDB();
 
 app.get("/", (req, res) => {
   res
